@@ -14,5 +14,6 @@ steps to run-
 
 1-truffle migrate --reset
 2-nodemon server.js
+3-nm
 
 
