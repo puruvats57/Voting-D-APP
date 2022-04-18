@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" type="text/css" href="styleLogin.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="shortcut icon" type="image/png" href="Emblem.png">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+
+	</head>
+	<body>
+		
+		<!--<form id="reg-form">
+			<input type="text" autocomplete="off" id="username" placeholder="Username" />
+			<input type="password" autocomplete="off" id="password" placeholder="Password" />
+			<input type="submit" value="Submit Form" />
+		</form> -->
+<div class="outer">
+<h1> register page</h1>
+  <div class="middle">
+    <div class="inner">
+        <form id="reg-form">
+	    <img src="img/Emblem.png" width="100px" height="100px" >
+		<h1>Enter Details</h1>
+	 	<label>username</label>
+	 	<input class="w3-input" type="text" autocomplete="off" id="username" placeholder="Username" />
+	 	
+	 	<label>Password</label>
+	 	<input class="w3-input" type="password" autocomplete="off" id="password" placeholder="Password" />
+	 	<input class="button" type="submit" value="Submit Form" style="width: 90%;">
+	 	
+	</form>
+	<h1>if already registered</h1>
+	<a href="login.html">login</a>
+	
+    </div>
+  </div>
+</div>
+
+		
+	
+
+		<script>
+			const form = document.getElementById('reg-form')
+			form.addEventListener('submit', registerUser)
+
+			async function registerUser(event) {
+				event.preventDefault()
+				const username = document.getElementById('username').value
+				const password = document.getElementById('password').value
+
+				const result = await fetch('/api/register', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						username,
+						password
+					})
+				}).then((res) => res.json())
+
+				if (result.status === 'ok') {
+					// everythign went fine
+					alert('Success')
+				} else {
+					alert(result.error)
+				}
+			}
+		</script>
+	</body>
+</html>
